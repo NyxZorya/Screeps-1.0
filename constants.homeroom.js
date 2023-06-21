@@ -1,3 +1,7 @@
+var ROLETYPES = require('constants.roletypes');
+var RESOURCES = require('constants.resources');
+var STRUCTURES = require('constants.structures');
+
 var HOMEROOM = 
 {
     
@@ -21,7 +25,7 @@ var HOMEROOM =
         return this.getSpawn().room.find(FIND_MY_STRUCTURES, {
             filter: (structure) =>
             {
-                return (structure.structureType == STRUCTURE_TOWER);
+                return (structure.structureType == STRUCTURES.Tower());
             }
         })[0];
     },
@@ -31,7 +35,7 @@ var HOMEROOM =
         return this.getSpawn().room.find(FIND_MY_STRUCTURES, {
             filter: (structure) =>
             {
-                return (structure.structureType == STRUCTURE_TOWER);
+                return (structure.structureType == STRUCTURES.Tower());
             }
         });
     },
@@ -41,8 +45,8 @@ var HOMEROOM =
         return this.getSpawn().room.find(FIND_MY_STRUCTURES, {
             filter: (structure) =>
             {
-                return (structure.structureType == STRUCTURE_TOWER
-                     && structure.store.getFreeCapacity(RESOURCE_ENERGY) != 0);
+                return (structure.structureType == STRUCTURES.Tower()
+                     && structure.store.getFreeCapacity(RESOURCES.Energy()) != 0);
             }
         })[0];
     },
@@ -52,7 +56,7 @@ var HOMEROOM =
         return this.getSpawn().room.find(FIND_MY_STRUCTURES, {
             filter: (structure) =>
             {
-                return (structure.structureType == STRUCTURE_STORAGE);
+                return (structure.structureType == STRUCTURES.Storage());
             }
         })[0];   
     },
@@ -62,7 +66,7 @@ var HOMEROOM =
         return this.getSpawn().room.find(FIND_MY_STRUCTURES, {
             filter: (structure) =>
             {
-                return (structure.structureType == STRUCTURE_EXTENSION);
+                return (structure.structureType == STRUCTURES.Extension());
             }
         });
     },
@@ -72,8 +76,8 @@ var HOMEROOM =
         return this.getSpawn().room.find(FIND_MY_STRUCTURES, {
             filter: (structure) =>
             {
-                return (structure.structureType == STRUCTURE_EXTENSION
-                     && structure.store.getFreeCapacity(RESOURCE_ENERGY) != 0);
+                return (structure.structureType == STRUCTURES.Extension()
+                     && structure.store.getFreeCapacity(RESOURCES.Energy()) != 0);
             }
         })[0];
     },
@@ -81,15 +85,15 @@ var HOMEROOM =
     getContainers: function() 
     {
         return Game.rooms[this.getName()].find(FIND_STRUCTURES, {
-            filter: (structure) => structure.structureType == STRUCTURE_CONTAINER
+            filter: (structure) => structure.structureType == STRUCTURES.Container()
         });
     },
     
     findNextUnfilledContainer: function() 
     {
         return Game.rooms[this.getName()].find(FIND_STRUCTURES, {
-            filter: (structure) => structure.structureType == STRUCTURE_CONTAINER
-                                && structure.store.getFreeCapacity(RESOURCE_ENERGY) != 0
+            filter: (structure) => structure.structureType == STRUCTURES.Container()
+                                && structure.store.getFreeCapacity(RESOURCES.Energy()) != 0
         })[0];
     },
 
@@ -102,18 +106,18 @@ var HOMEROOM =
     {
         switch(role)
         {
-            case "harvester":
-                return _(Game.creeps).filter( { memory: { role: 'harvester' } } ).size();
-            case "mule":
-                return _(Game.creeps).filter( { memory: { role: 'mule' } } ).size();
-            case "builder":
-                return _(Game.creeps).filter( { memory: { role: 'builder' } } ).size();
-            case "repairer":
-                return _(Game.creeps).filter( { memory: { role: 'repairer' } } ).size();
-            case "soldier":
-                return _(Game.creeps).filter( { memory: { role: 'soldier' } } ).size();
-            case "upgrader":
-                return _(Game.creeps).filter( { memory: { role: 'upgrader' } } ).size();
+            case ROLETYPES.Harvester():
+                return _(Game.creeps).filter( { memory: { role: ROLETYPES.Harvester() } } ).size();
+            case ROLETYPES.Mule():
+                return _(Game.creeps).filter( { memory: { role: ROLETYPES.Mule() } } ).size();
+            case ROLETYPES.Builder():
+                return _(Game.creeps).filter( { memory: { role: ROLETYPES.Builder() } } ).size();
+            case ROLETYPES.Repairer():
+                return _(Game.creeps).filter( { memory: { role: ROLETYPES.Repairer() } } ).size();
+            case ROLETYPES.Soldier():
+                return _(Game.creeps).filter( { memory: { role: ROLETYPES.Soldier() } } ).size();
+            case ROLETYPES.Upgrader():
+                return _(Game.creeps).filter( { memory: { role: ROLETYPES.Upgrader() } } ).size();
         }
     },
 
@@ -135,7 +139,46 @@ var HOMEROOM =
     invaded: function(status)
     {
         this.getSpawn().memory.invaded = status;
+    },
+    
+    getNumberOfConstructionProjects: function()
+    {
+        return Game.rooms[this.getName()].find(FIND_CONSTRUCTION_SITES).length;
+    },
+    
+    getNumOfLinks: function()
+    {   
+        return Game.rooms[this.getName()].find(FIND_STRUCTURES, {
+            filter: (structure => structure.structureType == STRUCTURES.Link())
+        }).length;
+    },
+    
+    getNumOfTerminals: function()
+    {
+        return Game.rooms[this.getName()].find(FIND_STRUCTURES, {
+            filter: (structure => structure.structureType == STRUCTURES.Terminal())
+        }).length;
+    },
+    
+    getTerminal: function()
+    {
+        return Game.rooms[this.getName()].find(FIND_STRUCTURES, {
+            filter: (structure => structure.structureType == STRUCTURES.Terminal())
+        })[0];
+    },
+    
+    getStorage: function()
+    {
+        return Game.rooms[this.getName()].find(FIND_STRUCTURES, {
+            filter: (structure => structure.structureType == STRUCTURES.Storage())
+        })[0];
+    },
+    
+    getObject: function(id)
+    {
+        return Game.getObjectById(id);
     }
+    
 };
 
 module.exports = HOMEROOM;

@@ -128,8 +128,42 @@ var helperRangeFinder =
                 return (structure.structureType == STRUCTURE_CONTROLLER);
             }
         });
-    }
+    },
     
+    findClosestLinkToBase: function()
+    {
+        return HOMEROOM.getSpawn().pos.findCLosestByPath(FIND_STRUCTURES, {
+           filter: (structure) =>
+           {
+               return (structure.structureType == STRUCTURE_LINK);
+           }
+        });
+    },
+    
+    findFurthestLinkFromBase: function()
+    {
+        var links = HOMEROOM.getSpawn().find(STRUCTURE_ROAD);
+    },
+    
+    findNearestLink: function(obj)
+    {
+        return obj.pos.findClosestByPath(FIND_STRUCTURES, {
+           filter: (structure) =>
+           {
+               return (structure.structureType == STRUCTURE_LINK);
+           }
+        });
+    },
+    
+    findStorage: function(obj)
+    {
+        return obj.pos.findClosestByPath(FIND_STRUCTURES, {
+            filter: (structure) =>
+            {
+                return (structure.structureType == STRUCTURE_STORAGE)
+            }
+        });
+    }
 };
 
 module.exports = helperRangeFinder;

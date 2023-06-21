@@ -49,11 +49,24 @@ var roleSpawn =
             {
                 harvesterCount = harvesterCap;
             }
-
+            
             if(Game.rooms[HOMEROOM.getName()].find(FIND_CONSTRUCTION_SITES).length >= 1)
             {
                 builderCap = 2;
                 upgraderCap = 3;
+            }
+            
+            if(HOMEROOM.getNumberOfConstructionProjects() > 10)
+            {
+                builderCap = 5;
+                muleCap = 2;
+                upgraderCap = 3;
+            }
+            
+            if(HOMEROOM.getController().level == 8)
+            {
+                upgraderCap = 1;
+                muleCap = 2;
             }
 
             if(harvesterCount < harvesterCap) 
@@ -84,7 +97,7 @@ var roleSpawn =
             {
                 console.log("Spawning Repairer");
             
-                CreepFactory.spawnRepairer();
+                //CreepFactory.spawnRepairer();
             }
             else if(soldierCount < soldierCap) 
             {

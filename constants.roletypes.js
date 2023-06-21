@@ -18,7 +18,7 @@ var ROLETYPES =
 
     Repairer: function()
     {
-        return "repairer"
+        return ""
     },
 
     Soldier: function()

@@ -1,5 +1,6 @@
 var rangeFinder = require('helper.rangefinder');
 var repairer = require('role.repairer');
+var HOMEROOM = require('constants.homeroom');
 
 var roleBuilder = 
 {
@@ -9,7 +10,12 @@ var roleBuilder =
         
         const buildTarget = rangeFinder.findMostRecentConstructionProject(creep);
         const nonEmptyContainer = rangeFinder.findNextNonEmptyContainer(creep);
-        const energyTarget = rangeFinder.findDroppedEnergy(creep);
+        var energyTarget;
+        
+        var storageTarget = HOMEROOM.getStorage();
+        var droppedEnergy = rangeFinder.findDroppedEnergy(creep);
+        
+        var withdrawal = false;
 
         if(creep.ticksToLive < 50) 
         {
@@ -23,12 +29,30 @@ var roleBuilder =
         {
             if(!creep.memory.building) 
             {
-                // Harvest
-                if(nonEmptyContainer)
+                if(storageTarget)
                 {
-                    if(creep.withdraw(nonEmptyContainer, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
+                    if(storageTarget.store.getUsedCapacity(RESOURCE_ENERGY) != 0)
                     {
-                        creep.moveTo(nonEmptyContainer);
+                        energyTarget = storageTarget;
+                        
+                        withdrawal = true;
+                    }
+                    else
+                    {
+                        energyTarget = droppedEnergy;
+                    }
+                }
+                else
+                {
+                    energyTarget = droppedEnergy;
+                }
+                
+                // Harvest
+                if(withdrawal)
+                {
+                    if(creep.withdraw(energyTarget, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
+                    {
+                        creep.moveTo(energyTarget);
                     }
                 }
                 else
@@ -41,7 +65,14 @@ var roleBuilder =
                     {
                         if(creep.pickup(energyTarget) == ERR_NOT_IN_RANGE) 
                         {
-                            creep.moveTo(energyTarget);
+                            if(HOMEROOM.getController().level == 8)
+                            {
+                                creep.moveTo(Game.flags["Stage"]);
+                            }
+                            else
+                            {
+                                creep.moveTo(energyTarget);
+                            }
                         }
                     }
                 }
@@ -55,7 +86,7 @@ var roleBuilder =
             {
                 if(creep.build(buildTarget) == ERR_NOT_IN_RANGE) 
                 {
-                    creep.moveTo(buildTarget, {visualizePathStyle: {stroke: '#ffffff'}});
+                    creep.moveTo(buildTarget);
                 }
                 
                 if(creep.store.getUsedCapacity(RESOURCE_ENERGY) == 0) 

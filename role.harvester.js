@@ -9,12 +9,14 @@ var roleHarvester =
     {
         var muleCount = _(Game.creeps).filter( { memory: { role: 'mule' } } ).size();
         
-        if(creep.ticksToLive < 10) 
+        if(creep.memory.muling && muleCount > 0)
         {
-            creep.drop(RESOURCE_ENERGY, creep.store.getUsedCapacity(RESOURCE_ENERGY));
-            creep.say("☠");
-            creep.suicide();
-            return;
+            creep.memory.muling = false;
+        }
+        
+        if(creep.ticksToLive < 20) 
+        {
+            creep.moveTo(HOMEROOM.getSpawn());
         }
         else if((creep.memory.muling || muleCount == 0) && creep.store.getFreeCapacity(RESOURCE_ENERGY) == 0)
         {
@@ -30,7 +32,18 @@ var roleHarvester =
             if(creep.store.getFreeCapacity(RESOURCE_ENERGY) == 0) 
             {
                 creep.memory.harvesting = false;
-                creep.drop(RESOURCE_ENERGY, creep.store.getCapacity(RESOURCE_ENERGY));
+                
+                if(HOMEROOM.getNumOfLinks() == 2)
+                {
+                    if(creep.transfer(HOMEROOM.getObject("648fa97c499a6b1576c9d2e7"), RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
+                    {
+                        creep.moveTo(HOMEROOM.getObject("648fa97c499a6b1576c9d2e7"));
+                    }
+                }
+                else
+                {
+                    creep.drop(RESOURCE_ENERGY, creep.store.getCapacity(RESOURCE_ENERGY));
+                }
             }
         }
     }

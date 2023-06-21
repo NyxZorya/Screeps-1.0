@@ -1,20 +1,39 @@
 var rangeFinder = require('helper.rangefinder');
+var HOMEROOM = require('constants.homeroom');
 
 var roleUpgrader = {
 
     /** @param {Creep} creep **/
     run: function(creep) 
     {
-
-        const activeEnergySource = rangeFinder.findDroppedEnergy(creep);
-        const nonEmptyContainer = rangeFinder.findNextNonEmptyContainer(creep);
         const roomController = rangeFinder.findController();
+        
+        const nonEmptyContainer = rangeFinder.findNextNonEmptyContainer(creep);
+        var energyTarget;
+        
+        var storageTarget = HOMEROOM.getStorage();
+        var droppedEnergy = rangeFinder.findDroppedEnergy(creep);
+        
+        var withdrawal = false;
         
         if(creep.memory.upgrading) 
         {   
-            if(creep.upgradeController(roomController) == ERR_NOT_IN_RANGE) 
+            if(HOMEROOM.getController().level == 8)
             {
-                creep.moveTo(roomController);
+                if(Game.time % 25 == 0)
+                {
+                    if(creep.upgradeController(roomController) == ERR_NOT_IN_RANGE) 
+                    {
+                        creep.moveTo(roomController);
+                    }
+                }
+            }
+            else
+            {
+                if(creep.upgradeController(roomController) == ERR_NOT_IN_RANGE) 
+                {
+                    creep.moveTo(roomController);
+                }
             }
             
             if(creep.store.getUsedCapacity(RESOURCE_ENERGY) == 0) 
@@ -24,24 +43,38 @@ var roleUpgrader = {
         }
         else 
         {
-            if(nonEmptyContainer)
+            if(storageTarget)
             {
-                if(creep.withdraw(nonEmptyContainer, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
+                if(storageTarget.store.getUsedCapacity(RESOURCE_ENERGY) != 0)
                 {
-                    creep.moveTo(nonEmptyContainer);
+                    energyTarget = storageTarget;
+                        
+                    withdrawal = true;
+                }
+                else
+                {
+                    energyTarget = droppedEnergy;
+                }
+            }
+            
+            if(withdrawal)
+            {
+                if(creep.withdraw(energyTarget, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
+                {
+                    creep.moveTo(energyTarget);
                 }
             }
             else
             {
-                if(!activeEnergySource)
+                if(!energyTarget)
                 {
                     creep.moveTo(Game.flags["Stage"]);
                 }
                 else
                 {
-                    if(creep.pickup(activeEnergySource) == ERR_NOT_IN_RANGE) 
+                    if(creep.pickup(energyTarget) == ERR_NOT_IN_RANGE) 
                     {
-                        creep.moveTo(activeEnergySource);
+                        creep.moveTo(energyTarget);
                     }
                 }
             }
