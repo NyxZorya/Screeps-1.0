@@ -6,7 +6,7 @@ var roleTower = {
     /** @param {Tower} tower **/
     run: function(tower) 
     {
-        const TARGET = rangeFinder.findNearestEnemy(tower);
+        const TARGET = rangeFinder.findNearestEnemy(HOMEROOM.getSpawn());
         
         if(!TARGET) 
         {
@@ -14,7 +14,7 @@ var roleTower = {
 
             if(HOMEROOM.getNumOf("repairer") == 0)
             {
-                tower.repair(rangeFinder.findNextStructureToRepair(tower));
+                tower.repair(rangeFinder.findNextStructureToRepair(HOMEROOM.getSpawn()));
             }
         }
         else 

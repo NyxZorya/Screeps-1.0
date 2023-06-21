@@ -4,7 +4,7 @@ var upgrader = require('role.upgrader');
 var repairer = require('role.repairer');
 var harvester = require('role.harvester');
 var mule = require('role.mule');
-var tower = require('role.tower');
+var towerRunner = require('role.tower');
 var HOMEROOM = require('constants.homeroom');
 
 var creepRunner = 
@@ -41,9 +41,9 @@ var creepRunner =
             }
         }
 
-        tower.run(HOMEROOM.getTower());
-        
-        //tower.run(Game.getObjectById("626fdb3ccd5ecd3162645665"));
+        towerRunner.run(Game.getObjectById("6417a708e02dfd7aab44eb6d"));
+        towerRunner.run(Game.getObjectById("63f32ae83e03b7687998380e"));
+        towerRunner.run(Game.getObjectById("6417b50a878b573e2308af4c"));
     }
     
 };

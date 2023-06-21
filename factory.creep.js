@@ -36,15 +36,15 @@ var creepFactory =
             break;
 
             case 4:
-                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,MOVE], "H" + timeName, {memory: {role: ROLETYPES.Harvester(), unloading: "false", source: energyLocation}});
+                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,WORK,WORK,CARRY,MOVE], "H" + timeName, {memory: {role: ROLETYPES.Harvester(), unloading: "false", source: energyLocation}});
             break;
 
             case 5:
-                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,MOVE], "H" + timeName, {memory: {role: ROLETYPES.Harvester(), unloading: "false", source: energyLocation}});
+                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,WORK,WORK,CARRY,MOVE], "H" + timeName, {memory: {role: ROLETYPES.Harvester(), unloading: "false", source: energyLocation}});
             break;
 
             case 6:
-                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,MOVE], "H" + timeName, {memory: {role: ROLETYPES.Harvester(), unloading: "false", source: energyLocation}});
+                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,WORK,WORK,CARRY,MOVE], "H" + timeName, {memory: {role: ROLETYPES.Harvester(), unloading: "false", source: energyLocation}});
             break;
 
             default:
@@ -81,15 +81,15 @@ var creepFactory =
             break;
 
             case 4:
-                HOMEROOM.getSpawn().spawnCreep([WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE], "M" + timeName, {memory: {role: ROLETYPES.Mule(), muling: "false"}});
+                HOMEROOM.getSpawn().spawnCreep([WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE], "M" + timeName, {memory: {role: ROLETYPES.Mule(), muling: "false"}});
             break;
 
             case 5:
-                HOMEROOM.getSpawn().spawnCreep([WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE], "M" + timeName, {memory: {role: ROLETYPES.Mule(), muling: "false"}});
+                HOMEROOM.getSpawn().spawnCreep([WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE], "M" + timeName, {memory: {role: ROLETYPES.Mule(), muling: "false"}});
             break;
 
             case 6:
-                HOMEROOM.getSpawn().spawnCreep([WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE], "M" + timeName, {memory: {role: ROLETYPES.Mule(), muling: "false"}});
+                HOMEROOM.getSpawn().spawnCreep([WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE], "M" + timeName, {memory: {role: ROLETYPES.Mule(), muling: "false"}});
             break;
 
             default:
@@ -119,15 +119,15 @@ var creepFactory =
             break;
 
             case 4:
-                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], "B" + timeName, {memory: {role: ROLETYPES.Builder()}});
+                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], "B" + timeName, {memory: {role: ROLETYPES.Builder()}});
             break;
 
             case 5:
-                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], "B" + timeName, {memory: {role: ROLETYPES.Builder()}});
+                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], "B" + timeName, {memory: {role: ROLETYPES.Builder()}});
             break;
 
             case 6:
-                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], "B" + timeName, {memory: {role: ROLETYPES.Builder()}});
+                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], "B" + timeName, {memory: {role: ROLETYPES.Builder()}});
             break;
 
             default:
@@ -157,15 +157,15 @@ var creepFactory =
             break;
 
             case 4:
-                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE], "U" + timeName, {memory: {role: ROLETYPES.Upgrader(), upgrading: "false"}});
+                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE], "U" + timeName, {memory: {role: ROLETYPES.Upgrader(), upgrading: "false"}});
             break;
 
             case 5:
-                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE], "U" + timeName, {memory: {role: ROLETYPES.Upgrader(), upgrading: "false"}});
+                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE], "U" + timeName, {memory: {role: ROLETYPES.Upgrader(), upgrading: "false"}});
             break;
 
             case 6:
-                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE], "U" + timeName, {memory: {role: ROLETYPES.Upgrader(), upgrading: "false"}});
+                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE], "U" + timeName, {memory: {role: ROLETYPES.Upgrader(), upgrading: "false"}});
             break;
 
             default:
@@ -195,15 +195,15 @@ var creepFactory =
             break;
 
             case 4:
-                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], "R" + timeName, {memory: {role: ROLETYPES.Repairer(), repairing: false}});
+                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], "R" + timeName, {memory: {role: ROLETYPES.Repairer(), repairing: false}});
             break;
 
             case 5:
-                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], "R" + timeName, {memory: {role: ROLETYPES.Repairer(), repairing: false}});
+                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], "R" + timeName, {memory: {role: ROLETYPES.Repairer(), repairing: false}});
             break;
 
             case 6:
-                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], "R" + timeName, {memory: {role: ROLETYPES.Repairer(), repairing: false}});
+                HOMEROOM.getSpawn().spawnCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], "R" + timeName, {memory: {role: ROLETYPES.Repairer(), repairing: false}});
             break;
 
             default:

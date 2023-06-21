@@ -5,9 +5,14 @@ var security = require('helper.security');
 var HOMEROOM = require('constants.homeroom');
 var GAMEPHASE = require('evaluator.gamephase');
 var energyManager = require('manager.energy');
+var rangeFinder = require('helper.rangefinder');
+var objHelper = require('helper.obj');
+var ROLETYPES = require('constants.roletypes');
 
 module.exports.loop = function () 
 {
+    energyManager.moveEnergy();
+    
     if(HOMEROOM.getPhase() == 0)
     {
         // Plan Roads
@@ -24,17 +29,16 @@ module.exports.loop = function ()
         {
             GAMEPHASE.evaluate();
     
-            if(energyManager.energyIsAtCapacity())
-            {
-                roleSpawn.fillEmptyRoles(); 
-            }
+            roleSpawn.fillEmptyRoles(); 
 
             // Check which structures need to be replaced
-    
+            
             systemManagement.clearMemory();
         }
         else
         {
+            console.log("Storage: " + HOMEROOM.getStorage());
+            
             creeps.run();
         }
     }
