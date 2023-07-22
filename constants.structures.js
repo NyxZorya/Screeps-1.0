@@ -49,6 +49,11 @@ var STRUCTURES =
     Link: function()
     {
         return STRUCTURE_LINK;
+    },
+    
+    Wall: function()
+    {
+        return STRUCTURE_WALL;
     }
     
 };

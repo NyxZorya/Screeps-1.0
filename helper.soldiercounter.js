@@ -16,20 +16,23 @@ var helperSoldierCounter =
         
         for(var name in Game.flags) 
         {
-            var assignedSoldiers = 0;
-            var flagName = name;
-            
-            for(var name in creeps) 
+            if(name.includes("Defense"))
             {
-                if(Game.creeps[name].memory.location == flagName) 
+                var assignedSoldiers = 0;
+                var flagName = name;
+            
+                for(var name in creeps) 
                 {
-                    assignedSoldiers = assignedSoldiers + 1;
+                    if(Game.creeps[name].memory.location == flagName) 
+                    {
+                        assignedSoldiers = assignedSoldiers + 1;
+                    }
                 }
-            }
             
-            if(assignedSoldiers < numOfSoldiers) 
-            {
-                return flagName;
+                if(assignedSoldiers < numOfSoldiers) 
+                {
+                    return flagName;
+                }
             }
         }
         

@@ -247,6 +247,49 @@ var creepFactory =
             default:
               console.log("Unknown Energy Value - Unable to spawn creep");
           }
+    },
+    
+    spawnExcavator: function()
+    {
+        var timeName = Game.time.toString().substring(Game.time.toString().length - 4, Game.time.toString().length - 1);
+        
+        switch(GamePhase.evaluateEnergy()) 
+        {
+            case 0:
+                HOMEROOM.getSpawn().spawnCreep([WORK,CARRY,CARRY,MOVE,MOVE], "E" + timeName, {memory: {role: ROLETYPES.Excavator(), mining: "false"}});
+            break;
+            
+            case 1:
+                HOMEROOM.getSpawn().spawnCreep([WORK,CARRY,CARRY,MOVE,MOVE], "E" + timeName, {memory: {role: ROLETYPES.Excavator(), mining: "false"}});
+            break;
+            
+            case 2:
+                HOMEROOM.getSpawn().spawnCreep([WORK,CARRY,CARRY,MOVE,MOVE], "E" + timeName, {memory: {role: ROLETYPES.Excavator(), mining: "false"}});
+            break;
+            
+            case 3:
+                HOMEROOM.getSpawn().spawnCreep([WORK,CARRY,CARRY,MOVE,MOVE], "E" + timeName, {memory: {role: ROLETYPES.Excavator(), mining: "false"}});
+            break;
+            
+            case 4:
+                HOMEROOM.getSpawn().spawnCreep([WORK,CARRY,CARRY,MOVE,MOVE], "E" + timeName, {memory: {role: ROLETYPES.Excavator(), mining: "false"}});
+            break;
+            
+            case 5:
+                HOMEROOM.getSpawn().spawnCreep([WORK,CARRY,CARRY,MOVE,MOVE], "E" + timeName, {memory: {role: ROLETYPES.Excavator(), mining: "false"}});
+            break;
+            
+            case 6:
+                HOMEROOM.getSpawn().spawnCreep([WORK,CARRY,CARRY,MOVE,MOVE], "E" + timeName, {memory: {role: ROLETYPES.Excavator(), mining: "false"}});
+            break;
+        }
+    },
+    
+    spawnTaunter: function()
+    {
+        var timeName = Game.time.toString().substring(Game.time.toString().length - 4, Game.time.toString().length - 1);
+        
+        HOMEROOM.getSpawn().spawnCreep([WORK,MOVE,MOVE,MOVE], "T" + timeName, {memory: {role: ROLETYPES.Taunter()}});   
     }
 	
 };

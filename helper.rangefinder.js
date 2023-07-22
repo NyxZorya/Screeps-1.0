@@ -1,4 +1,6 @@
 var HOMEROOM = require('constants.homeroom');
+var filter = require('helper.filters');
+var STRUCTURES = require('constants.structures');
 
 var helperRangeFinder = 
 {
@@ -53,23 +55,35 @@ var helperRangeFinder =
         return creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES);
     },
     
+    findDroppedLemergium: function(creep)
+    {
+        // TODO: Change this to only look for Lemergium in homeroom
+        return creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES);
+    },
+    
     findNextStructureToRepair: function(creep)
     {
         return creep.room.find(FIND_STRUCTURES, 
         {
-            filter: object => object.hits < 2500
+            filter: object => object.hits < 5000
         })[0];
     },
     
-    findNextContainerToRepair: function(creep) 
+    findStructureBelow10PercentHits: function(creep)
     {
-        return creep.room.find(FIND_STRUCTURES, {
-           filter: (structure) => 
-           {
-                return (structure.structureType == STRUCTURE_CONTAINER) &&
-                structure.hits < 50000;
-           } 
+        return creep.room.find(FIND_STRUCTURES,
+        {
+            filter: (structure) =>
+            {
+                return (structure.structureType != STRUCTURE_WALL) &&
+                (structure.hits / structure.hitsMax) <= .25;
+            }
         })[0];
+    },
+    
+    findNextContainerToRepair: function(creep)
+    {
+        return filter.structureByHitsUnder(creep, STRUCTURES.Container(), 5000);
     },
     
     findNextNonEmptyContainer: function(creep) 
@@ -83,26 +97,14 @@ var helperRangeFinder =
         })[0];
     },
     
-    findNextWallToRepair: function(creep) 
+    findNextWallToRepair: function(creep)
     {
-        return creep.room.find(FIND_STRUCTURES, {
-           filter: (structure) => 
-           {
-                return (structure.structureType == STRUCTURE_WALL) &&
-                structure.hits < 25000;
-           } 
-        })[0];
+        return filter.structureByHitsUnder(creep, STRUCTURES.Wall(), 5000)[0];
     },
     
-    findNextRoadToRepair: function(creep) 
+    findNextRoadToRepair: function(creep)
     {
-        return creep.room.find(FIND_STRUCTURES, {
-           filter: (structure) => 
-           {
-                return (structure.structureType == STRUCTURE_ROAD) &&
-                structure.hits < 2500;
-           } 
-        })[0];
+        return filter.structureByHitsUnder(creep, STRUCTURES.Road(), 5000);  
     },
     
     findHomeSpawn: function() 

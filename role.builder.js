@@ -17,11 +17,7 @@ var roleBuilder =
         
         var withdrawal = false;
 
-        if(creep.ticksToLive < 50) 
-        {
-            creep.suicide();
-        }
-        else if(!buildTarget) 
+        if(!buildTarget) 
         {
             repairer.run(creep);
         }
@@ -59,7 +55,7 @@ var roleBuilder =
                 {
                     if(!energyTarget)
                     {
-                        creep.moveTo(Game.flags["Stage"]);
+                        creep.moveTo(Game.flags["2"]);
                     }
                     else
                     {
@@ -67,7 +63,7 @@ var roleBuilder =
                         {
                             if(HOMEROOM.getController().level == 8)
                             {
-                                creep.moveTo(Game.flags["Stage"]);
+                                creep.moveTo(Game.flags["2"]);
                             }
                             else
                             {

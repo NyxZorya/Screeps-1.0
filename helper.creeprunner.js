@@ -5,6 +5,8 @@ var repairer = require('role.repairer');
 var harvester = require('role.harvester');
 var mule = require('role.mule');
 var towerRunner = require('role.tower');
+var excavator = require('role.excavator');
+var taunter = require('role.taunter');
 var HOMEROOM = require('constants.homeroom');
 
 var creepRunner = 
@@ -36,14 +38,23 @@ var creepRunner =
                 case 'mule':
                     mule.run(creep);
                     break;
+                case 'excavator':
+                    excavator.run(creep);
+                    break;
+                case 'taunter':
+                    taunter.run(creep);
+                    break;
                 default:
                     console.log("Unknown creep role: " + creep.memory.role);
             }
         }
 
-        towerRunner.run(Game.getObjectById("6417a708e02dfd7aab44eb6d"));
-        towerRunner.run(Game.getObjectById("63f32ae83e03b7687998380e"));
-        towerRunner.run(Game.getObjectById("6417b50a878b573e2308af4c"));
+        towerRunner.run(Game.getObjectById("649320c3a9652862c08bdf4d"));
+        towerRunner.run(Game.getObjectById("64933967762a9ed3720f1aa5"));
+        towerRunner.run(Game.getObjectById("64934d43e546fec427c3bc56"));
+        towerRunner.run(Game.getObjectById("649c57238e2b1102205d8dc2"));
+        towerRunner.run(Game.getObjectById("649c5c23e27ccbd284b63dc1"));
+        towerRunner.run(Game.getObjectById("649c613eef81d083dc7e54b6"));
     }
     
 };

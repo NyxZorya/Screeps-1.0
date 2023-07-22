@@ -14,7 +14,12 @@ var roleTower = {
 
             if(HOMEROOM.getNumOf("repairer") == 0)
             {
-                tower.repair(rangeFinder.findNextStructureToRepair(HOMEROOM.getSpawn()));
+                var wall = rangeFinder.findNextWallToRepair(HOMEROOM.getSpawn());
+	            var other = rangeFinder.findStructureBelow10PercentHits(HOMEROOM.getSpawn());
+	    
+	            var target = wall ? wall : other;
+                
+                tower.repair(target);
             }
         }
         else 

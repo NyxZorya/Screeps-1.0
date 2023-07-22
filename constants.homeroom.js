@@ -118,6 +118,10 @@ var HOMEROOM =
                 return _(Game.creeps).filter( { memory: { role: ROLETYPES.Soldier() } } ).size();
             case ROLETYPES.Upgrader():
                 return _(Game.creeps).filter( { memory: { role: ROLETYPES.Upgrader() } } ).size();
+            case ROLETYPES.Excavator():
+                return _(Game.creeps).filter( { memory: { role: ROLETYPES.Excavator() } } ).size();
+            case ROLETYPES.Taunter():
+                return _(Game.creeps).filter( { memory: { role: ROLETYPES.Taunter() } } ).size();
         }
     },
 
