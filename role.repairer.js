@@ -18,11 +18,11 @@ var roleRepairer =
             {
                 try 
                 {
-                    creep.moveTo(Game.flags["Garage"]);    
+                    creep.moveTo(Game.flags["3"]);    
                 } 
                 catch (error) 
                 {
-                    console.log("Place a flag named 'Garage'");
+                    console.log("Place a flag named '3'");
                 }
             }
             else
@@ -68,7 +68,7 @@ var roleRepairer =
             {
                 if(!energyTarget)
                 {
-                    creep.moveTo(Game.flags["Stage"]);
+                    creep.moveTo(Game.flags["2"]);
                 }
                 else
                 {

@@ -9,26 +9,18 @@ var roleHarvester =
     {
         var muleCount = _(Game.creeps).filter( { memory: { role: 'mule' } } ).size();
         
-        if(creep.memory.muling && muleCount > 0)
+        
+        if(muleCount > 0)
         {
             creep.memory.muling = false;
         }
         
-        if(creep.ticksToLive < 20) 
-        {
-            creep.moveTo(HOMEROOM.getSpawn());
-        }
-        else if((creep.memory.muling || muleCount == 0) && creep.store.getFreeCapacity(RESOURCE_ENERGY) == 0)
+        if((creep.memory.muling || muleCount == 0) && creep.store.getFreeCapacity(RESOURCE_ENERGY) == 0)
         {
             roleMule.run(creep);
         }
         else 
         {
-            if(creep.harvest(HOMEROOM.getEnergySource(creep.memory.source)) == ERR_NOT_IN_RANGE) 
-            {
-                creep.moveTo(HOMEROOM.getEnergySource(creep.memory.source));
-            }
-
             if(creep.store.getFreeCapacity(RESOURCE_ENERGY) == 0) 
             {
                 creep.memory.harvesting = false;
@@ -41,8 +33,15 @@ var roleHarvester =
                     }
                 }
                 else
-                {
+                {   
                     creep.drop(RESOURCE_ENERGY, creep.store.getCapacity(RESOURCE_ENERGY));
+                }
+            }
+            else 
+            {
+                if(creep.harvest(HOMEROOM.getEnergySource(creep.memory.source)) == ERR_NOT_IN_RANGE)
+                {
+                    creep.moveTo(HOMEROOM.getEnergySource(creep.memory.source));
                 }
             }
         }

@@ -20,7 +20,7 @@ var roleUpgrader = {
         {   
             if(HOMEROOM.getController().level == 8)
             {
-                if(Game.time % 25 == 0)
+                if(Game.time % 10 == 0)
                 {
                     if(creep.upgradeController(roomController) == ERR_NOT_IN_RANGE) 
                     {

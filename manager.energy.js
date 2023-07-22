@@ -63,7 +63,7 @@ var managerEnergy =
         var linkFrom = HOMEROOM.getObject("648fa97c499a6b1576c9d2e7");
         var linkTo = HOMEROOM.getObject("648f9b6e95641a28e7ed6099");
         
-        if(linkFrom.store.getFreeCapacity(RESOURCE_ENERGY) <= 400)
+        if(linkFrom.store.getFreeCapacity(RESOURCE_ENERGY) <= 200)
         {
             linkFrom.transferEnergy(linkTo);
         }

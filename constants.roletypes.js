@@ -18,7 +18,7 @@ var ROLETYPES =
 
     Repairer: function()
     {
-        return ""
+        return "repairer"
     },
 
     Soldier: function()
@@ -29,6 +29,16 @@ var ROLETYPES =
     Upgrader: function()
     {
         return "upgrader";
+    },
+    
+    Excavator: function()
+    {
+        return "excavator";
+    },
+    
+    Taunter: function()
+    {
+        return "taunter";
     }
 
 };

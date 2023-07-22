@@ -77,7 +77,7 @@ var roleMule = {
             
             if(!energyTarget)
             {
-                creep.moveTo(Game.flags["Mule Stage"]);
+                creep.moveTo(Game.flags["1"]);
             }
             else
             {
@@ -94,7 +94,7 @@ var roleMule = {
                     {
                         if(HOMEROOM.getController().level == 8)
                         {
-                            creep.moveTo(Game.flags["Mule Stage"]);
+                            creep.moveTo(Game.flags["1"]);
                         }
                         else
                         {
@@ -166,7 +166,7 @@ var roleMule = {
 
         if(!CONTAINER) 
         {
-            creep.memory.taskToComplete = "storage";
+            creep.memory.taskToComplete = "tower";
         }
         else 
         {
@@ -184,44 +184,13 @@ var roleMule = {
         }
     },
 
-    storageTask: function(creep) 
-    {
-        const STORAGE = HOMEROOM.getStorage();
-        
-        if(!STORAGE || STORAGE.store.getFreeCapacity(RESOURCE_ENERGY) == 0)
-        {
-            creep.memory.taskToComplete = "tower";
-        }
-        else
-        {
-            if(creep.store.getUsedCapacity(RESOURCE_ENERGY) != 0)
-            {
-                if(creep.transfer(STORAGE, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
-                {
-                    creep.moveTo(STORAGE);
-                }
-            }
-            else
-            {
-                creep.memory.taskToComplete = 'spawn';
-            }
-        }
-    },
-
     towerTask: function(creep) 
     {
         const TOWER = HOMEROOM.getNextUnfilledTower();
 
         if(!TOWER || TOWER.store.getFreeCapacity(RESOURCE_ENERGY) == 0) 
         {
-            if(HOMEROOM.getController().level == 8)
-            {
-                creep.memory.taskToComplete = "spawn";
-            }
-            else
-            {
-                creep.memory.taskToComplete = "controller";
-            }
+            creep.memory.taskToComplete = "storage";
         }
         else 
         {
@@ -233,6 +202,37 @@ var roleMule = {
                 }
             }
             else 
+            {
+                creep.memory.taskToComplete = 'spawn';
+            }
+        }
+    },
+    
+    storageTask: function(creep) 
+    {
+        const STORAGE = HOMEROOM.getStorage();
+        
+        if(!STORAGE || STORAGE.store.getFreeCapacity(RESOURCE_ENERGY) == 0 || STORAGE.store.getUsedCapacity(RESOURCE_ENERGY) >= 500000)
+        {
+            if(HOMEROOM.getController().level == 8)
+            {
+                creep.memory.taskToComplete = "spawn";
+            }
+            else
+            {
+                creep.memory.taskToComplete = "controller";
+            }
+        }
+        else
+        {
+            if(creep.store.getUsedCapacity(RESOURCE_ENERGY) != 0)
+            {
+                if(creep.transfer(STORAGE, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
+                {
+                    creep.moveTo(STORAGE);
+                }
+            }
+            else
             {
                 creep.memory.taskToComplete = 'spawn';
             }

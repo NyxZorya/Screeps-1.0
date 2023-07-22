@@ -37,8 +37,6 @@ module.exports.loop = function ()
         }
         else
         {
-            console.log("Storage: " + HOMEROOM.getStorage());
-            
             creeps.run();
         }
     }

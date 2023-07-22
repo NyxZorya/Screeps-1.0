@@ -19,14 +19,18 @@ var roleSpawn =
         var builderCount    = HOMEROOM.getNumOf(ROLETYPES.Builder());
         var repairerCount   = HOMEROOM.getNumOf(ROLETYPES.Repairer());
         var muleCount       = HOMEROOM.getNumOf(ROLETYPES.Mule());
+        var excavatorCount  = HOMEROOM.getNumOf(ROLETYPES.Excavator());
+        var taunterCount    = HOMEROOM.getNumOf(ROLETYPES.Taunter());
 
-        var harvesterCap = 2;
+        var harvesterCap = 3;
         var muleCap      = 4;
         var builderCap   = 0;
         var upgraderCap  = 5;
         var repairerCap  = 1;
         var soldierCap   = 2;
-
+        var excavatorCap = 1;
+        var taunterCap = 2;
+        
         if(HOMEROOM.getSpawn().memory.invaded)
         {
             soldierCap = 5;
@@ -81,6 +85,12 @@ var roleSpawn =
 
                 CreepFactory.spawnMule();
             }
+            else if(excavatorCount < excavatorCap)
+            {
+                console.log("Spawning Excavator");
+                
+                CreepFactory.spawnExcavator();
+            }
             else if(builderCount < builderCap) 
             {
                 console.log("Spawning Builder");
@@ -93,12 +103,12 @@ var roleSpawn =
             
                 CreepFactory.spawnUpgrader();
             }
-            else if(repairerCount < repairerCap) 
-            {
-                console.log("Spawning Repairer");
+            //else if(repairerCount < repairerCap) 
+            //{
+                //console.log("Spawning Repairer");
             
                 //CreepFactory.spawnRepairer();
-            }
+            //}
             else if(soldierCount < soldierCap) 
             {
                 var guardLocation = soldierCounter.countSoldiersAtFlags();
@@ -109,6 +119,12 @@ var roleSpawn =
 
                     CreepFactory.spawnSoldier(guardLocation);
                 }
+            }
+            else if(taunterCount < taunterCap)
+            {
+                console.log("Spawning Taunter");
+                
+                CreepFactory.spawnTaunter();   
             }
             else 
             {
